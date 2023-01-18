@@ -9,7 +9,7 @@
     Semestar:       Zimski (V)
     
     Ime fajla:      client.c
-    Opis:           TCP/IP klijent
+    Opis:           TCP Battleship
     
     Platforma:      Raspberry Pi 2 - Model B
     OS:             Raspbian
@@ -31,6 +31,7 @@ int main(int argc , char *argv[])
     int sock;
     struct sockaddr_in server;
     char *message = "this is a test";
+    char srv[DEFAULT_BUFLEN] = "";
 
     //Create socket
     sock = socket(AF_INET , SOCK_STREAM , 0);
@@ -53,13 +54,20 @@ int main(int argc , char *argv[])
 
     puts("Connected\n");
 
-    //Send some data
-    if( send(sock , message , strlen(message), 0) < 0)
+while(1){
+    recv(sock, srv, sizeof(srv), 0);
+
+    char x[DEFAULT_BUFLEN] = "";
+    fgets(x, DEFAULT_BUFLEN, stdin);
+
+    if( send(sock , x , strlen(x), 0) < 0)
     {
         puts("Send failed");
         return 1;
     }
 
+}
+    //Send some data
     puts("Client message:");
     puts(message);
 
