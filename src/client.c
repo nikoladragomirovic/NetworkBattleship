@@ -80,8 +80,11 @@ int main(int argc, char *argv[])
 
         // Wait for user to input variable
         char x[DEFAULT_BUFLEN] = "";
-        fgets(x, DEFAULT_BUFLEN, stdin);
-
+        while(1){
+            fgets(x, DEFAULT_BUFLEN, stdin);
+            if(strcmp(x, "1\n") == 0 || strcmp(x, "2\n") == 0 || strcmp(x, "0\n") == 0 || strcmp(x, "SIDEWAYS\n") == 0 || strcmp(x, "UPRIGHT\n") == 0){ break; }
+            else{puts("Non-Valid Input (Must be '0', '1', '2' or 'SIDEWAYS', 'UPRIGHT')");}
+        }
         // Send variable to server
         if (send(sock, x, strlen(x), 0) < 0)
         {
@@ -119,8 +122,11 @@ int main(int argc, char *argv[])
             puts(server_msg);
 
             char x[DEFAULT_BUFLEN] = "";
+            while(1){
             fgets(x, DEFAULT_BUFLEN, stdin);
-
+            if(strcmp(x, "1\n") == 0 || strcmp(x, "2\n") == 0 || strcmp(x, "0\n") == 0 || strcmp(x, "SIDEWAYS\n") == 0 || strcmp(x, "UPRIGHT\n") == 0){ break; }
+            else{puts("Non-Valid Input (Must be '0', '1' or '2')");}
+            }
             if (send(sock, x, strlen(x), 0) < 0)
             {
                 puts("Send failed");
