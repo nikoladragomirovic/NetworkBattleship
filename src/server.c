@@ -76,10 +76,10 @@ int main(int argc, char *argv[])
     char *start_message3 = "ENTER BIG SHIP X COORDINATE  ";
     char *start_message4 = "ENTER BIG SHIP Y COORDINATE  ";
     char *start_message5 = "ENTER BIG SHIP ORIENTATION   ";
-    char *bomb_message1 = "ENTER BOMB X COORDINATE      ";
-    char *bomb_message2 = "ENTER BOMB Y COORDINATE      ";
-    char *win_message = "YOU ARE THE WINNER!!!!!!     ";
-    char *lose_message = "YOU LOST :(                  ";
+    char *bomb_message1 =  "ENTER BOMB X COORDINATE      ";
+    char *bomb_message2 =  "ENTER BOMB Y COORDINATE      ";
+    char *win_message =    "YOU ARE THE WINNER!!!!!!     ";
+    char *lose_message =   "YOU LOST :(                  ";
 
     // Network variables
     int client_num = 0;
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
     struct sockaddr_in server, client;
     char client_msgA[DEFAULT_BUFLEN];
     char client_msgB[DEFAULT_BUFLEN];
-
+    
     // Create socket
     socket_desc = socket(AF_INET, SOCK_STREAM, 0);
     if (socket_desc == -1)
@@ -766,38 +766,38 @@ int main(int argc, char *argv[])
     if (winner == PLAYER_A)
     {
         // Send winning message to player A
-        if (send(client_sock[PLAYER_A], win_message, strlen(win_message), 0) < 0)
+        if (send(client_sock[PLAYER_A], win_message, 30, 0) < 0)
         {
             puts("Send failed");
             return 1;
         }
         // Send losing message to player B
-        if (send(client_sock[PLAYER_B], lose_message, strlen(lose_message), 0) < 0)
+        if (send(client_sock[PLAYER_B], lose_message, 30, 0) < 0)
         {
             puts("Send failed");
             return 1;
         }
-        // Block program
-        while (1);
+        //Block program
+        while(1);
     }
 
     // Check if player B won
     else if (winner == PLAYER_B)
     {
         // Send winning message to player B
-        if (send(client_sock[PLAYER_B], win_message, strlen(win_message), 0) < 0)
+        if (send(client_sock[PLAYER_B], win_message, 30, 0) < 0)
         {
             puts("Send failed");
             return 1;
         }
         // Send winning message to player A
-        if (send(client_sock[PLAYER_A], lose_message, strlen(lose_message), 0) < 0)
+        if (send(client_sock[PLAYER_A], lose_message, 30, 0) < 0)
         {
             puts("Send failed");
             return 1;
         }
-        // Block program
-        while (1);
+        //Block program
+        while(1);
     }
 
     return 0;

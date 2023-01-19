@@ -119,6 +119,17 @@ int main(int argc, char *argv[])
             server_msg[0] = '\0';
             printf("\n");
             recv(sock, server_msg, DEFAULT_BUFLEN, 0);
+            if(strcmp(server_msg, "YOU LOST :(                  ") == 0){
+                printf("      _            _   __ ___\n");
+                printf(" \\_/ / \\ | |   |  / \\ (_   |  \n");
+                printf("  |  \\_/ |_|   |_ \\_/ __)  |  \n\n");
+                while(1);
+            }else if(strcmp(server_msg, "YOU ARE THE WINNER!!!!!!     ") == 0){
+                printf("      _                _       \n");
+                printf(" \\_/ / \\ | |   \\    / / \\ |\\ |\n");
+                printf("  |  \\_/ |_|    \\/\\/  \\_/ | \\|\n\n");
+                while(1);             
+            }
             puts(server_msg);
 
             char x[DEFAULT_BUFLEN] = "";
