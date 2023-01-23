@@ -80,10 +80,17 @@ int main(int argc, char *argv[])
 
         // Wait for user to input variable
         char x[DEFAULT_BUFLEN] = "";
-        while(1){
+        while (1)
+        {
             fgets(x, DEFAULT_BUFLEN, stdin);
-            if(strcmp(x, "1\n") == 0 || strcmp(x, "2\n") == 0 || strcmp(x, "0\n") == 0 || strcmp(x, "SIDEWAYS\n") == 0 || strcmp(x, "UPRIGHT\n") == 0){ break; }
-            else{puts("Non-Valid Input (Must be '0', '1', '2' or 'SIDEWAYS', 'UPRIGHT')");}
+            if (strcmp(x, "1\n") == 0 || strcmp(x, "2\n") == 0 || strcmp(x, "0\n") == 0 || strcmp(x, "SIDEWAYS\n") == 0 || strcmp(x, "UPRIGHT\n") == 0)
+            {
+                break;
+            }
+            else
+            {
+                puts("Non-Valid Input (Must be '0', '1', '2' or 'SIDEWAYS', 'UPRIGHT')");
+            }
         }
         // Send variable to server
         if (send(sock, x, strlen(x), 0) < 0)
@@ -119,24 +126,36 @@ int main(int argc, char *argv[])
             server_msg[0] = '\0';
             printf("\n");
             recv(sock, server_msg, DEFAULT_BUFLEN, 0);
-            if(strcmp(server_msg, "YOU LOST :(                  ") == 0){
+            if (strcmp(server_msg, "YOU LOST :(                  ") == 0)
+            {
                 printf("      _            _   __ ___\n");
                 printf(" \\_/ / \\ | |   |  / \\ (_   |  \n");
                 printf("  |  \\_/ |_|   |_ \\_/ __)  |  \n\n");
-                while(1);
-            }else if(strcmp(server_msg, "YOU ARE THE WINNER!!!!!!     ") == 0){
+                while (1)
+                    ;
+            }
+            else if (strcmp(server_msg, "YOU ARE THE WINNER!!!!!!     ") == 0)
+            {
                 printf("      _                _       \n");
                 printf(" \\_/ / \\ | |   \\    / / \\ |\\ |\n");
                 printf("  |  \\_/ |_|    \\/\\/  \\_/ | \\|\n\n");
-                while(1);             
+                while (1)
+                    ;
             }
             puts(server_msg);
 
             char x[DEFAULT_BUFLEN] = "";
-            while(1){
-            fgets(x, DEFAULT_BUFLEN, stdin);
-            if(strcmp(x, "1\n") == 0 || strcmp(x, "2\n") == 0 || strcmp(x, "0\n") == 0 || strcmp(x, "SIDEWAYS\n") == 0 || strcmp(x, "UPRIGHT\n") == 0){ break; }
-            else{puts("Non-Valid Input (Must be '0', '1' or '2')");}
+            while (1)
+            {
+                fgets(x, DEFAULT_BUFLEN, stdin);
+                if (strcmp(x, "1\n") == 0 || strcmp(x, "2\n") == 0 || strcmp(x, "0\n") == 0 || strcmp(x, "SIDEWAYS\n") == 0 || strcmp(x, "UPRIGHT\n") == 0)
+                {
+                    break;
+                }
+                else
+                {
+                    puts("Non-Valid Input (Must be '0', '1' or '2')");
+                }
             }
             if (send(sock, x, strlen(x), 0) < 0)
             {
